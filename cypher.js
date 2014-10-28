@@ -135,7 +135,9 @@ Davonki.prototype.getSignature = function (timestamp, nonce, encrypt) {
 };
 
 function PKCS7Decoder(buff) {
-    var pad = buff[buff.length - 2];
+    //somehow there's always an ending char when testing local
+    //you may need to change 'buff.length -1' to 'buff.length -2' when testing on local
+    var pad = buff[buff.length - 1];
 
     if (pad < 1 || pad > 32) {
         pad = 0;
